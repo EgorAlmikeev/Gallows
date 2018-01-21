@@ -34,6 +34,10 @@ QString GallowsCore::getGameWord() {
     return gameWord;
 }
 
+QString GallowsCore::getOriginalWord() {
+    return originalWord;
+}
+
 int GallowsCore::getAttempts() {
     return attempts;
 }

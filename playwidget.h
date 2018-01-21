@@ -30,8 +30,9 @@ signals:
 
 public slots:
 
-    void displayGameWord(QString word);
+    void display(QString word);
     void letterButtonClicked(QWidget * button);
+    void setPicture(int attempts);
 
 };
 

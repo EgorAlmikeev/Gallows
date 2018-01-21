@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow {
     WordInputWidget * pWordInputWidget;
     QStackedWidget  * pMainStackedWidget;
 
+    bool gameStopped = false;
+
 public:
 
     MainWindow(QWidget *parent = 0);
@@ -25,6 +27,7 @@ public slots :
 
     void startGame(QString word);
     void makeCoreStep(QString letter);
+    void stopGame();
 };
 
 #endif // MAINWINDOW_H

@@ -12,6 +12,9 @@ PlayWidget::PlayWidget(QWidget *parent) : QWidget(parent) {
     //pictures area setup
     pPictureLabel = new QLabel;
     pPictureLabel->setFrameStyle(QFrame::WinPanel);
+    pPictureLabel->setAlignment(Qt::AlignCenter);
+    pPictureLabel->setFont(QFont("Courier New", 20));
+    setPicture(9);
     pCentralVerticalLayout->addWidget(pPictureLabel);
 
     //game word text edit setup
@@ -51,11 +54,15 @@ PlayWidget::PlayWidget(QWidget *parent) : QWidget(parent) {
     connect(pLettersSignalMapper, SIGNAL(mapped(QWidget *)), SLOT(letterButtonClicked(QWidget *)));
 }
 
-void PlayWidget::displayGameWord(QString word) {
+void PlayWidget::display(QString word) {
     pGameWordLineEdit->setText(word);
 }
 
 void PlayWidget::letterButtonClicked(QWidget * button) {
     button->setEnabled(false);
     emit makeStep(((QPushButton *) button)->text());
+}
+
+void PlayWidget::setPicture(int attempts) {
+    pPictureLabel->setText("Попыток : " + QString::number(attempts));
 }

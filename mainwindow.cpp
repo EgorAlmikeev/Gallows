@@ -29,7 +29,7 @@ MainWindow::~MainWindow() {
 void MainWindow::startGame(QString word) {
     pCore->setOriginalWord(word);
     pCore->gameInit();
-    pPlayWidget->displayGameWord(pCore->getGameWord());
+    pPlayWidget->display(pCore->getGameWord());
 
     //GUI changes for play widget
     setGeometry(500, 50, 1, 1);
@@ -38,6 +38,21 @@ void MainWindow::startGame(QString word) {
 }
 
 void MainWindow::makeCoreStep(QString letter) {
+    if (gameStopped) return;
+
     pCore->makeStep(letter);
-    pPlayWidget->displayGameWord(pCore->getGameWord());
+    pPlayWidget->display(pCore->getGameWord());
+
+    int attempts = pCore->getAttempts();
+
+    if (attempts && pCore->getGameWord().contains("_")) pPlayWidget->setPicture(attempts);
+    else stopGame();
+}
+
+void MainWindow::stopGame() {
+    gameStopped = true;
+    QString gameWord = pCore->getGameWord();
+
+    if (gameWord.contains("_")) pPlayWidget->display("You lose.");
+    else pPlayWidget->display("You win.");
 }

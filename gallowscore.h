@@ -20,16 +20,12 @@ public :
 //    class GallowsCoreException { public : GallowsCoreException(QString what) : what(what) {} QString what; };
     class LetterAlreadyUsedException {};
 
-    void setOriginalWord(QString word);
-
-    QString getGameWord();
-
     int getAttempts();
-
-    QString getUsedLetters();
-
     void gameInit();
-
+    void setOriginalWord(QString word);
+    QString getGameWord();
+    QString getUsedLetters();
+    QString getOriginalWord();
     QString makeStep(QString letter);
 };
 
